@@ -1,0 +1,5 @@
+import {SignJWT,jwtVerify} from "jose";import {cookies} from "next/headers";import {db} from "@/lib/db";
+const secret=()=>{const value=process.env.AUTH_SECRET;if(!value||value.length<32)throw new Error("AUTH_SECRET must contain at least 32 characters");return new TextEncoder().encode(value)};
+export async function issueSession(id:string,role:string){return new SignJWT({role}).setProtectedHeader({alg:"HS256"}).setSubject(id).setIssuedAt().setExpirationTime("8h").sign(secret())}
+export async function currentUser(){try{const token=(await cookies()).get("epan_session")?.value;if(!token)return null;const {payload}=await jwtVerify(token,secret());if(!payload.sub)return null;return {id:payload.sub,role:String(payload.role)}}catch{return null}}
+export async function requireStaff(){const session=await currentUser();if(!session)return null;const user=await db.user.findUnique({where:{id:session.id},select:{id:true,role:true}});if(!user||!( ["ADMIN","BAKER"].includes(user.role)))return null;return user}

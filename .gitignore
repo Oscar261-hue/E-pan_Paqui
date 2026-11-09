@@ -1,0 +1,15 @@
+node_modules/
+.next/
+.env
+.env.*
+!.env.example
+coverage/
+*.log
+
+# Archivos locales de base de datos
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivos temporales de TypeScript
+*.tsbuildinfo

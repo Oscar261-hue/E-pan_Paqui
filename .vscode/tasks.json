@@ -1,0 +1,663 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Buscar validación BD",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Get-ChildItem -Path .\\src -Recurse -File | Select-String -Pattern 'Base de datos no configurada|PostgreSQL válida|postgresql'"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Exportar ruta para inspección",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Get-Content -LiteralPath '.\\src\\app\\api\\admin\\products\\route.ts' -Raw | Set-Content -LiteralPath '.\\_route_inspect.txt'"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer ruta de productos",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\api\\admin\\products\\route.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer src/lib/admin-validation.ts",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src/lib/admin-validation.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer src/app/api/admin/products/[id]/route.ts",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src/app/api/admin/products/[id]/route.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer página de productos",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\admin\\productos\\page.tsx",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Verificar TypeScript",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"typecheck"
+			],
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Revisar gitignore",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\.gitignore",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Verificar eliminación",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\api\\admin\\products\\[id]\\route.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer lista de productos",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\admin\\productos\\page.tsx",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Verificar eliminación TypeScript",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"typecheck"
+			],
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Inventariar flujo de pedidos",
+			"type": "shell",
+			"command": "Get-ChildItem",
+			"args": [
+				"-Path",
+				".\\src\\app",
+				"-Recurse",
+				"-File",
+				"-Filter",
+				"*.tsx"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Inventariar APIs de pedidos",
+			"type": "shell",
+			"command": "Get-ChildItem",
+			"args": [
+				"-Path",
+				".\\src\\app\\api",
+				"-Recurse",
+				"-File",
+				"-Filter",
+				"route.ts"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer flujo completo de pedidos",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src/app/page.tsx",
+				".\\src/app/admin/page.tsx",
+				".\\src/app/seguimiento/tracking-client.tsx",
+				".\\src/app/api/orders/route.ts",
+				".\\src/app/api/admin/orders/[id]/route.ts",
+				".\\src/app/api/track/route.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer cliente principal",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\page.tsx",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer seguimiento y administración",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\seguimiento\\tracking-client.tsx",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer APIs públicas de pedidos",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\api\\track\\route.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer creación de pedidos",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\api\\orders\\route.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer estados administrativos",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\api\\admin\\orders\\[id]\\route.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer panel de pedidos",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\admin\\page.tsx",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer página de seguimiento",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\seguimiento\\page.tsx",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer registro del pedido",
+			"type": "shell",
+			"command": "Select-String",
+			"args": [
+				"-Path",
+				".\\src\\app\\page.tsx",
+				"-Pattern",
+				"setTrackUrl"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Verificar flujo de pedidos",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"typecheck"
+			],
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Revisar transiciones",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\lib\\order.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer función de registro",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\page.tsx",
+				"-Encoding",
+				"utf8"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Localizar botón de guardar",
+			"type": "shell",
+			"command": "Select-String",
+			"args": [
+				"-Path",
+				".\\src\\app\\page.tsx",
+				"-Pattern",
+				"Registrar pedido",
+				"-Encoding",
+				"utf8"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Revisar validación de pago",
+			"type": "shell",
+			"command": "Select-String",
+			"args": [
+				"-Path",
+				".\\src\\app\\api\\admin\\orders\\[id]\\route.ts",
+				"-Pattern",
+				"PAYMENT_REQUIRED",
+				"-Encoding",
+				"utf8"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Revisar validación pago 2",
+			"type": "shell",
+			"command": "Select-String",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\api\\admin\\orders\\[id]\\route.ts",
+				"-Pattern",
+				"PAYMENT_REQUIRED",
+				"-Encoding",
+				"utf8"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Extraer línea de transición",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\app\\api\\admin\\orders\\[id]\\route.ts",
+				"-Encoding",
+				"utf8"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Typecheck correcciones pedidos",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"typecheck"
+			],
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Typecheck final pedidos",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"typecheck"
+			],
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Inventariar pruebas",
+			"type": "shell",
+			"command": "Get-ChildItem",
+			"args": [
+				"-Path",
+				".\\src",
+				".\\tests",
+				".\\test",
+				"-Recurse",
+				"-File",
+				"-Include",
+				"*.test.ts",
+				"*.test.tsx"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Ejecutar pruebas del proyecto",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"test"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Leer pruebas existentes",
+			"type": "shell",
+			"command": "Get-Content",
+			"args": [
+				"-LiteralPath",
+				".\\src\\lib\\db-api.test.ts",
+				"-Raw"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Typecheck final E-Pan",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"typecheck"
+			],
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Inspect root page",
+			"type": "shell",
+			"command": "Get-Content -LiteralPath .\\src\\app\\page.tsx -Encoding utf8 | Select-String -Pattern 'epan-cart|function add|cardBody|change\\(p.id' -Context 0,1",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect JSX fragment",
+			"type": "shell",
+			"command": "$line=Get-Content -LiteralPath .\\src\\app\\page.tsx -Encoding utf8 | Where-Object {$_ -like '*p.description*'}; $start=$line.IndexOf('p.description'); $line.Substring($start,180)",
+			"isBackground": false
+		},
+		{
+			"label": "Format root page",
+			"type": "shell",
+			"command": "npx prettier --write .\\src\\app\\page.tsx",
+			"isBackground": false
+		},
+		{
+			"label": "Check formatter",
+			"type": "shell",
+			"command": "Test-Path .\\node_modules\\.bin\\prettier.cmd",
+			"isBackground": false
+		},
+		{
+			"label": "Add catalog quantity controls",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\page.tsx).Path; $text=[IO.File]::ReadAllText($path); $old='p.description}</p><button className=\"add\" disabled={\"available\" in p&&!p.available} onClick={()=>add(p.id)}>{\"available\" in p&&!p.available?\"Agotado\":\"Agregar al carrito\"}</button>'; $new='p.description}</p>{!(\"available\" in p)||p.available?<><div className=\"qty\" aria-label={`Cantidad de ${p.name}`}><button type=\"button\" onClick={()=>adjustPickQty(p.id,-1)} aria-label={`Disminuir cantidad de ${p.name}`}><Minus size={14}/></button><span aria-live=\"polite\">{selectedQty(p.id)}</span><button type=\"button\" onClick={()=>adjustPickQty(p.id,1)} aria-label={`Aumentar cantidad de ${p.name}`}><Plus size={14}/></button></div><button className=\"add\" onClick={()=>add(p.id)}>Agregar al carrito · {formatPrice(p.price*selectedQty(p.id))}</button></>:<button className=\"add\" disabled>Agotado</button>}'; if(!$text.Contains($old)){throw \"No se encontró el fragmento del catálogo\"}; $text=$text.Replace($old,$new); $text=$text.Replace('onClick={()=>change(p.id,-p.qty)} aria-label=\"Eliminar\"','onClick={()=>remove(p.id)} aria-label={`Eliminar ${p.name}`}'); [IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))",
+			"isBackground": false
+		},
+		{
+			"label": "Apply catalog quantity controls",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\page.tsx).Path; $text=[IO.File]::ReadAllText($path); $old='p.description}</p><button className=\"add\" disabled={\"available\" in p&&!p.available} onClick={()=>add(p.id)}>{\"available\" in p&&!p.available?\"Agotado\":\"Agregar al carrito\"}</button>'; $new='p.description}</p>{!(\"available\" in p)||p.available?<><div className=\"qty\" aria-label={`Cantidad de ${p.name}`}><button type=\"button\" onClick={()=>adjustPickQty(p.id,-1)} aria-label={`Disminuir cantidad de ${p.name}`}><Minus size={14}/></button><span aria-live=\"polite\">{selectedQty(p.id)}</span><button type=\"button\" onClick={()=>adjustPickQty(p.id,1)} aria-label={`Aumentar cantidad de ${p.name}`}><Plus size={14}/></button></div><button className=\"add\" onClick={()=>add(p.id)}>Agregar al carrito · {formatPrice(p.price*selectedQty(p.id))}</button></>:<button className=\"add\" disabled>Agotado</button>}'; $found=$text.Contains($old); if($found){$text=$text.Replace($old,$new);$text=$text.Replace('onClick={()=>change(p.id,-p.qty)} aria-label=\"Eliminar\"','onClick={()=>remove(p.id)} aria-label={`Eliminar ${p.name}`}');[IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))}; Write-Output $found",
+			"isBackground": false
+		},
+		{
+			"label": "Apply catalog counter markup",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\page.tsx).Path; $text=[IO.File]::ReadAllText($path); $start=$text.IndexOf('p.description'); $end=$text.IndexOf('</button>',$start)+9; $found=($start -ge 0 -and $end -gt $start); if($found){$old=$text.Substring($start,$end-$start);$new='p.description}</p>{!(\"available\" in p)||p.available?<><div className=\"qty\" aria-label={`Cantidad de ${p.name}`}><button type=\"button\" onClick={()=>adjustPickQty(p.id,-1)} aria-label={`Disminuir cantidad de ${p.name}`}><Minus size={14}/></button><span aria-live=\"polite\">{selectedQty(p.id)}</span><button type=\"button\" onClick={()=>adjustPickQty(p.id,1)} aria-label={`Aumentar cantidad de ${p.name}`}><Plus size={14}/></button></div><button className=\"add\" onClick={()=>add(p.id)}>Agregar al carrito · {formatPrice(p.price*selectedQty(p.id))}</button></>:<button className=\"add\" disabled>Agotado</button>}';$text=$text.Substring(0,$start)+$new+$text.Substring($end);$text=$text.Replace('onClick={()=>change(p.id,-p.qty)} aria-label=\"Eliminar\"','onClick={()=>remove(p.id)} aria-label={`Eliminar ${p.name}`}');[IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))}; Write-Output $found",
+			"isBackground": false
+		},
+		{
+			"label": "Typecheck piece counters",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Repair counter JSX attributes",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\page.tsx).Path; $text=[IO.File]::ReadAllText($path); $text=$text.Replace('{!(available in p)','{!(\"available\" in p)').Replace('className=qty','className=\"qty\"').Replace('type=button','type=\"button\"').Replace('aria-live=polite','aria-live=\"polite\"').Replace('className=add','className=\"add\"'); [IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))",
+			"isBackground": false
+		},
+		{
+			"label": "Verify piece counter typecheck",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Fix JSX quote encoding",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\page.tsx).Path; $text=[IO.File]::ReadAllText($path); $dq=[char]34; $text=$text.Replace('{!(available in p)','{!('+$dq+'available'+$dq+' in p)').Replace('className=qty','className='+$dq+'qty'+$dq).Replace('type=button','type='+$dq+'button'+$dq).Replace('aria-live=polite','aria-live='+$dq+'polite'+$dq).Replace('className=add','className='+$dq+'add'+$dq); [IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))",
+			"isBackground": false
+		},
+		{
+			"label": "Final typecheck piece counters",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Run project tests",
+			"type": "shell",
+			"command": "npm test -- --run",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect cart and tracking flow",
+			"type": "shell",
+			"command": "Get-ChildItem -Path .\\src -Recurse -File -Include *.ts,*.tsx | Select-String -Pattern 'epan-active-order|Eliminar|remove\\(|setActiveOrder|Entregado|DELIVERED|Delivered|router\\.(push|replace)|change\\(|cart' -Context 0,1",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect active order indicator",
+			"type": "shell",
+			"command": "Get-Content -LiteralPath .\\src\\app\\active-order-indicator.tsx -Encoding utf8; Get-Content -LiteralPath .\\src\\app\\layout.tsx -Encoding utf8; Get-Content -LiteralPath .\\src\\app\\seguimiento\\page.tsx -Encoding utf8",
+			"isBackground": false
+		},
+		{
+			"label": "Fix cart removal and empty state",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\page.tsx).Path; $text=[IO.File]::ReadAllText($path); $dq=[char]34; $bt=[char]96; $old='onClick={()=>change(p.id,-p.qty)} aria-label='+$dq+'Eliminar'+$dq; $new='onClick={()=>remove(p.id)} aria-label='+$dq+$bt+'Eliminar ${p.name}'+$bt+$dq; $text=$text.Replace($old,$new); $text=$text.Replace('<p>Tu carrito está esperando algo recién horneado.</p>','<p>Tu carrito está vacío.</p><button className=\"add\" type=\"button\" onClick={()=>setOpen(false)}>Volver al catálogo</button>'); [IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))",
+			"isBackground": false
+		},
+		{
+			"label": "Verify cart removal handler",
+			"type": "shell",
+			"command": "Get-Content -LiteralPath .\\src\\app\\page.tsx -Encoding utf8 | Select-String -Pattern 'remove\\(p.id\\)|Tu carrito está vacío|Volver al catálogo' -Context 0,0",
+			"isBackground": false
+		},
+		{
+			"label": "Typecheck cart persistence fix",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Repair empty cart JSX",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\page.tsx).Path; $text=[IO.File]::ReadAllText($path); $dq=[char]34; $bt=[char]96; $text=$text.Replace('className=add','className='+$dq+'add'+$dq).Replace('type=button','type='+$dq+'button'+$dq); $bad='aria-label='+$dq+$bt+'Eliminar ${p.name}'+$bt+$dq; $text=$text.Replace($bad,'aria-label={`Eliminar ${p.name}`}'); $text=$text.Replace('<p>Tu carrito está vacío.</p><button className='+$dq+'add'+$dq+' type='+$dq+'button'+$dq+' onClick={()=>setOpen(false)}>Volver al catálogo</button>','<><p>Tu carrito está vacío.</p><button className='+$dq+'add'+$dq+' type='+$dq+'button'+$dq+' onClick={()=>setOpen(false)}>Volver al catálogo</button></>'); [IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))",
+			"isBackground": false
+		},
+		{
+			"label": "Verify cart fix",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect tracking types",
+			"type": "shell",
+			"command": "$text=[IO.File]::ReadAllText((Resolve-Path .\\src\\app\\seguimiento\\tracking-client-v3.tsx).Path); $text.Substring(0,[Math]::Min(1200,$text.Length))",
+			"isBackground": false
+		},
+		{
+			"label": "Preserve tracking history",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\seguimiento\\tracking-client-v3.tsx).Path; $text=[IO.File]::ReadAllText($path); $needle='type Item={productName:string;quantity:number};type TrackData={number:string;status:string;fulfillment:string;updatedAt:string;totalCents:number;items:Item[]};'; $replacement=$needle+'type SavedOrder={number:string;token:string;status?:string};function rememberOrder(order:SavedOrder){try{localStorage.setItem(\"epan-active-order\",JSON.stringify(order));const raw=localStorage.getItem(\"epan-order-history\"),history=raw?JSON.parse(raw):[];const list=Array.isArray(history)?history.filter((item:SavedOrder)=>item?.number&&item?.token&&!(item.number===order.number&&item.token===order.token)):[ ];localStorage.setItem(\"epan-order-history\",JSON.stringify([order,...list].slice(0,20)))}catch{}}'; $text=$text.Replace($needle,$replacement); $text=$text.Replace('localStorage.setItem(\"epan-active-order\",JSON.stringify({number,token}))','rememberOrder({number,token})').Replace('localStorage.setItem(\"epan-active-order\",JSON.stringify({number,token,status:d.status}))','rememberOrder({number,token,status:d.status})'); [IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))",
+			"isBackground": false
+		},
+		{
+			"label": "Final tracking and cart typecheck",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Fix tracking storage keys",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\seguimiento\\tracking-client-v3.tsx).Path; $text=[IO.File]::ReadAllText($path); $dq=[char]34; $text=$text.Replace('localStorage.setItem(epan-active-order','localStorage.setItem('+$dq+'epan-active-order'+$dq).Replace('localStorage.getItem(epan-order-history','localStorage.getItem('+$dq+'epan-order-history'+$dq).Replace('localStorage.setItem(epan-order-history','localStorage.setItem('+$dq+'epan-order-history'+$dq); [IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))",
+			"isBackground": false
+		},
+		{
+			"label": "Verify final tracking persistence",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect order archive structure",
+			"type": "shell",
+			"command": "Get-Content -LiteralPath .\\prisma\\schema.prisma -Encoding utf8 | Select-String -Pattern 'model Order|status|createdAt|updatedAt' -Context 0,12; Get-Content -LiteralPath .\\src\\app\\admin\\page.tsx -Encoding utf8 | Select-String -Pattern 'deleteOrder|DELIVERED|orders.map|fetch\\(`/api/admin/orders' -Context 2,4; Get-Content -LiteralPath .\\src\\app\\api\\admin\\orders\\[id]\\route.ts -Encoding utf8",
+			"isBackground": false
+		},
+		{
+			"label": "Read admin order page",
+			"type": "shell",
+			"command": "Get-Content -LiteralPath .\\src\\app\\admin\\page.tsx -Encoding utf8",
+			"isBackground": false
+		},
+		{
+			"label": "Read orders API",
+			"type": "shell",
+			"command": "Get-Content -LiteralPath .\\src\\app\\api\\admin\\orders\\route.ts -Encoding utf8",
+			"isBackground": false
+		},
+		{
+			"label": "Sync archive schema",
+			"type": "shell",
+			"command": "npx prisma generate; npx prisma db push",
+			"isBackground": false
+		},
+		{
+			"label": "Typecheck order history",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect order type",
+			"type": "shell",
+			"command": "Get-Content .\\src\\app\\admin\\page.tsx -Encoding utf8 | Select-String -Pattern 'status: string|archivedAt' -Context 0,1",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect admin type declarations",
+			"type": "shell",
+			"command": "Get-Content .\\src\\app\\admin\\page.tsx -Encoding utf8 | Select-Object -First 45",
+			"isBackground": false
+		},
+		{
+			"label": "Final typecheck order archive",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Read attached instructions",
+			"type": "shell",
+			"command": "Get-Content -LiteralPath 'C:\\Users\\oscar\\AppData\\Roaming\\Code\\agentSessionData\\1e7fbe13-e807-43ae-a060-59d37efdb774\\attachments\\8428b4be-65c8-4af6-b98d-c4daa7d8e3df\\Pasted text #1.txt' -Encoding utf8",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect admin isolation and tracking",
+			"type": "shell",
+			"command": "Get-Content .\\src\\app\\active-order-indicator.tsx -Encoding utf8; Get-Content .\\src\\app\\seguimiento\\tracking-client-v3.tsx -Encoding utf8 | Select-Object -First 12; if(Test-Path .\\src\\middleware.ts){Get-Content .\\src\\middleware.ts -Encoding utf8}; if(Test-Path .\\src\\lib\\auth.ts){Get-Content .\\src\\lib\\auth.ts -Encoding utf8}",
+			"isBackground": false
+		},
+		{
+			"label": "Add finalize tracking action",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\seguimiento\\tracking-client-v3.tsx).Path; $text=[IO.File]::ReadAllText($path); $text=$text.Replace('export default function TrackingClient(){const q=useSearchParams(),number=','export default function TrackingClient(){const router=useRouter(),q=useSearchParams(),number=').Replace('[data,setData]=useState<TrackData|null>(null),[err,setErr]=useState(\"\"),[paying,setPaying]=useState(false),[cancelling,setCancelling]=useState(false);','[data,setData]=useState<TrackData|null>(null),[err,setErr]=useState(\"\"),[paying,setPaying]=useState(false),[cancelling,setCancelling]=useState(false),[finalizing,setFinalizing]=useState(false);'); $dq=[char]34; $confirm='window.confirm('+$dq+'¿Deseas finalizar el seguimiento de este pedido?'+$dq+')'; $fn='}async function finalize(){if(!data||data.status!=='+$dq+'DELIVERED'+$dq+'||!'+$confirm+')return;setFinalizing(true);try{localStorage.removeItem('+$dq+'epan-active-order'+$dq+');router.replace('+$dq+'/'+$dq+')}finally{setFinalizing(false)}}const canCancel='; $text=$text.Replace('}const canCancel=',$fn); $button='{data.status==='+$dq+'DELIVERED'+$dq+'&&<button className='+$dq+'add'+$dq+' type='+$dq+'button'+$dq+' disabled={finalizing} onClick={finalize}>{finalizing?'+$dq+'Finalizando…'+$dq+':'+$dq+'Finalizar'+$dq+'}</button>}'; $text=$text.Replace('</button>}</div></>}</main>','</button>}'+$button+'</div></>}</main>'); [IO.File]::WriteAllText($path,$text,(New-Object Text.UTF8Encoding($false)))",
+			"isBackground": false
+		},
+		{
+			"label": "Typecheck client admin separation",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		},
+		{
+			"label": "Inspect tracking state",
+			"type": "shell",
+			"command": "$t=[IO.File]::ReadAllText((Resolve-Path .\\src\\app\\seguimiento\\tracking-client-v3.tsx).Path);$i=$t.IndexOf('const [data');$t.Substring($i,180)",
+			"isBackground": false
+		},
+		{
+			"label": "Fix finalizing state",
+			"type": "shell",
+			"command": "$path=(Resolve-Path .\\src\\app\\seguimiento\\tracking-client-v3.tsx).Path;$t=[IO.File]::ReadAllText($path);$t=$t.Replace('[cancelling,setCancelling]=useState(false);','[cancelling,setCancelling]=useState(false),[finalizing,setFinalizing]=useState(false);');[IO.File]::WriteAllText($path,$t,(New-Object Text.UTF8Encoding($false)))",
+			"isBackground": false
+		},
+		{
+			"label": "Verify final tracking button",
+			"type": "shell",
+			"command": "npm run typecheck",
+			"isBackground": false
+		}
+	]
+}
