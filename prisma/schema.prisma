@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+enum Role {
+  CUSTOMER
+  BAKER
+  ADMIN
+}
+enum OrderStatus {
+  PENDING_PAYMENT
+  RECEIVED
+  PREPARING
+  READY
+  DELIVERED
+  CANCELLED
+}
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+enum Fulfillment {
+  PICKUP
+  DELIVERY
+}
+model User {
+  id String @id @default(cuid())
+  name String
+  email String @unique
+  passwordHash String
+  role Role @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  auditLogs AuditLog[]
+}
+model Category {
+  id String @id @default(cuid())
+  name String @unique
+  slug String @unique
+  products Product[]
+}
+model Product {
+  id String @id @default(cuid())
+  name String
+  slug String @unique
+  description String
+  priceCents Int
+  imageUrl String
+  active Boolean @default(true)
+  inventory Int?
+  madeToOrder Boolean @default(false)
+  categoryId String
+  category Category @relation(fields:[categoryId],references:[id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orderItems OrderItem[]
+  inventoryMovements InventoryMovement[]
+  @@index([categoryId,active])
+}
+model Order {
+  id String @id @default(cuid())
+  number String @unique
+  idempotencyKey String @unique
+  accessTokenHash String
+  customerName String
+  phone String
+  address String?
+  fulfillment Fulfillment
+  requestedAt DateTime?
+  notes String?
+  subtotalCents Int
+  deliveryCents Int @default(0)
+  totalCents Int
+  status OrderStatus @default(PENDING_PAYMENT)
+    archivedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  items OrderItem[]
+  payments Payment[]
+  history OrderStatusHistory[]
+  @@index([status,createdAt])
+    @@index([archivedAt,createdAt])
+}
+model OrderItem {
+  id String @id @default(cuid())
+  orderId String
+  order Order @relation(fields:[orderId],references:[id],onDelete:Cascade)
+  productId String
+  product Product @relation(fields:[productId],references:[id])
+  productName String
+  unitPriceCents Int
+  quantity Int
+  customization Json?
+}
+model Payment {
+  id String @id @default(cuid())
+  orderId String
+  order Order @relation(fields:[orderId],references:[id],onDelete:Cascade)
+  provider String
+  providerId String? @unique
+  providerPreferenceId String? @unique
+  status PaymentStatus @default(PENDING)
+  amountCents Int
+  currency String @default("MXN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([orderId,status])
+}
+model OrderStatusHistory {
+  id String @id @default(cuid())
+  orderId String
+  order Order @relation(fields:[orderId],references:[id],onDelete:Cascade)
+  fromStatus OrderStatus?
+  toStatus OrderStatus
+  actorId String?
+  note String?
+  createdAt DateTime @default(now())
+}
+model InventoryMovement {
+  id String @id @default(cuid())
+  productId String
+  product Product @relation(fields:[productId],references:[id])
+  quantityDelta Int
+  reason String
+  orderId String?
+  actorId String?
+  createdAt DateTime @default(now())
+  @@index([productId,createdAt])
+}
+model AuditLog {
+  id String @id @default(cuid())
+  userId String?
+  user User? @relation(fields:[userId],references:[id])
+  action String
+  entity String
+  entityId String
+  details Json?
+  createdAt DateTime @default(now())
+  @@index([entity,entityId])
+}
+model StoreSettings {
+  id String @id @default("store")
+  pickupEnabled Boolean @default(true)
+  deliveryEnabled Boolean @default(false)
+  deliveryFeeCents Int @default(0)
+  address String?
+  hours String?
+  updatedAt DateTime @updatedAt
+}

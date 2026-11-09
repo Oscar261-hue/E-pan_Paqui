@@ -1,0 +1,3 @@
+export const transitions:Record<string,string[]>={PENDING_PAYMENT:["RECEIVED","CANCELLED"],RECEIVED:["PREPARING","CANCELLED"],PREPARING:["READY","CANCELLED"],READY:["DELIVERED"],DELIVERED:[],CANCELLED:[]};
+export function canTransition(from:string,to:string){return transitions[from]?.includes(to)??false}
+export function totalCents(items:{priceCents:number;quantity:number}[],deliveryCents=0){if(!items.length||items.some(i=>!Number.isInteger(i.quantity)||i.quantity<1||i.quantity>30||!Number.isInteger(i.priceCents)||i.priceCents<0))throw new Error("Invalid items");return items.reduce((s,i)=>s+i.priceCents*i.quantity,deliveryCents)}

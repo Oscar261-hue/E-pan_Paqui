@@ -1,0 +1,8 @@
+import {afterEach,describe,it,expect} from "vitest";import {GET as ordersGet} from "../app/api/admin/orders/route";import {PATCH as orderPatch} from "../app/api/admin/orders/[id]/route";import {GET as productsGet,POST as productsPost} from "../app/api/admin/products/route";import {PATCH as productPatch} from "../app/api/admin/products/[id]/route";
+afterEach(()=>{delete process.env.DATABASE_URL});
+describe("autorización de administración sin sesión",()=>{
+ it("deniega la consulta de pedidos",async()=>{delete process.env.DATABASE_URL;expect((await ordersGet()).status).toBe(401)});
+ it("deniega el cambio de estado a visitantes",async()=>{delete process.env.DATABASE_URL;const request=new Request("http://localhost/api/admin/orders/o1",{method:"PATCH",headers:{"content-type":"application/json"},body:JSON.stringify({status:"PREPARING"})});expect((await orderPatch(request,{params:Promise.resolve({id:"o1"})})).status).toBe(401)});
+ it("deniega la consulta del catálogo administrativo",async()=>{delete process.env.DATABASE_URL;expect((await productsGet()).status).toBe(401)});
+ it("deniega la creación y edición de productos antes de procesar datos",async()=>{delete process.env.DATABASE_URL;const request=new Request("http://localhost/api/admin/products",{method:"POST",headers:{"content-type":"application/json"},body:"{}"});expect((await productsPost(request)).status).toBe(401);const patchRequest=new Request("http://localhost/api/admin/products/p1",{method:"PATCH",headers:{"content-type":"application/json"},body:"{}"});expect((await productPatch(patchRequest,{params:Promise.resolve({id:"p1"})})).status).toBe(401)});
+});
